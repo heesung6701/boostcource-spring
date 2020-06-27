@@ -14,7 +14,21 @@ public class BusinessCardManagerDao {
    }
 
    public List<BusinessCard> searchBusinessCard(String keyword) {
-     // 구현하세요.
+     return jdbcContext.<BusinessCard>executeQuery(conn -> {
+       PreparedStatement ps = conn.prepareStatement(BusinessCardManagerDaoSqls.SELECT_LIKE);
+       ps.setString(1, "%"+keyword+"%");
+       return ps;
+     }, rs -> {
+       try {
+         String name = rs.getString("name");
+         String phone = rs.getString("phone");
+         String company = rs.getString("company_name");
+         return new BusinessCard(name, phone, company);
+       } catch(Exception e) {
+         e.printStackTrace();
+       }
+       return null;
+     });
    }
 
    public boolean addBusinessCard(BusinessCard businessCard) {
