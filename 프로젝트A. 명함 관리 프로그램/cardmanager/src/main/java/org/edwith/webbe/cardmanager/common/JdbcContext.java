@@ -9,15 +9,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 import org.edwith.webbe.cardmanager.config.DBConfig;
+import org.edwith.webbe.cardmanager.exception.CustomException;
 
 public class JdbcContext {
 
-  public int executeUpdate(StatementStrategy stmt) {
+  public int executeUpdate(StatementStrategy stmt) throws CustomException {
     try {
       Class.forName("com.mysql.cj.jdbc.Driver");
     } catch (ClassNotFoundException e) {
-      e.printStackTrace();
-      return 0;
+      throw new CustomException("'com.mysql.cj.jdbc.Driver' 로딩 실패");
     }
     try (
         final Connection conn =
@@ -25,19 +25,19 @@ public class JdbcContext {
         final PreparedStatement ps = stmt.makePreparedStatement(conn)) {
         return ps.executeUpdate();
     } catch (SQLException sqlException) {
-      sqlException.printStackTrace();
+      throw new CustomException("SQL 문법 오류");
     } catch (Exception e) {
       e.printStackTrace();
+      throw e;
     }
-    return 0;
   }
   
-  public <T> List<T> executeQuery(StatementStrategy stmt, Function<ResultSet, T> mapper) {
+  public <T> List<T> executeQuery(StatementStrategy stmt, Function<ResultSet, T> mapper) throws CustomException {
     ArrayList<T> result = new ArrayList<>();
     try {
       Class.forName("com.mysql.cj.jdbc.Driver");
     } catch (ClassNotFoundException e) {
-      e.printStackTrace();
+      throw new CustomException("'com.mysql.cj.jdbc.Driver' 로딩 실패");
     }
     try (
         final Connection conn =
@@ -49,8 +49,10 @@ public class JdbcContext {
       } 
     } catch (SQLException sqlException) {
       sqlException.printStackTrace();
+      throw new CustomException("SQL 문법 오류");
     } catch (Exception e) {
       e.printStackTrace();
+      throw e;
     }
     return result;
   }

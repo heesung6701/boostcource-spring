@@ -2,6 +2,7 @@ package org.edwith.webbe.cardmanager.dao;
 
 import org.edwith.webbe.cardmanager.common.JdbcContext;
 import org.edwith.webbe.cardmanager.dto.BusinessCard;
+import org.edwith.webbe.cardmanager.exception.CustomException;
 import java.sql.PreparedStatement;
 import java.util.List;
 
@@ -13,7 +14,7 @@ public class BusinessCardManagerDao {
      this.jdbcContext = jdbcContext;
    }
 
-   public List<BusinessCard> searchBusinessCard(String keyword) {
+   public List<BusinessCard> searchBusinessCard(String keyword) throws CustomException{
      return jdbcContext.<BusinessCard>executeQuery(conn -> {
        PreparedStatement ps = conn.prepareStatement(BusinessCardManagerDaoSqls.SELECT_LIKE);
        ps.setString(1, "%"+keyword+"%");
@@ -31,7 +32,7 @@ public class BusinessCardManagerDao {
      });
    }
 
-   public boolean addBusinessCard(BusinessCard businessCard) {
+   public boolean addBusinessCard(BusinessCard businessCard) throws CustomException{
      int result = jdbcContext.executeUpdate(conn -> {
        PreparedStatement ps = conn.prepareStatement(BusinessCardManagerDaoSqls.INSERT);
        ps.setString(1, businessCard.getName());
