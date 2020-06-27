@@ -30,8 +30,7 @@ public class CardManagerUI {
 
     public int getMenuNumber(){
         try {
-            int menuNumber = Integer.parseInt(in.readLine());
-            return menuNumber;
+            return Integer.parseInt(in.readLine());
         }catch(Exception ex){
             return -1; // 숫자로 변환 못할 경우 -1을 리턴한다.
         }
@@ -45,8 +44,7 @@ public class CardManagerUI {
             String phone = in.readLine();
             System.out.print("회사 이름을 입력하세요. : ");
             String companyName = in.readLine();
-            BusinessCard businessCard = new BusinessCard(name, phone, companyName);
-            return businessCard;
+            return new BusinessCard(name, phone, companyName);
         }catch(Exception ex){
             System.out.println("잘못된 값을 입력했습니다. ");
             return null;
@@ -56,8 +54,7 @@ public class CardManagerUI {
     public String getSearchKeyword(){
         try {
             System.out.print("검색할 이름을 입력하세요. (like검색) : ");
-            String searchKeyword = in.readLine();
-            return searchKeyword;
+            return in.readLine();
         }catch(Exception ex){
             System.out.println("잘못된 값을 입력했습니다. ");
             return null;
