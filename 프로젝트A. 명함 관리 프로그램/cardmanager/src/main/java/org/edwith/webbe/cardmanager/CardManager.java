@@ -1,5 +1,6 @@
 package org.edwith.webbe.cardmanager;
 
+import org.edwith.webbe.cardmanager.common.JdbcContext;
 import org.edwith.webbe.cardmanager.dao.BusinessCardManagerDao;
 import org.edwith.webbe.cardmanager.dto.BusinessCard;
 import org.edwith.webbe.cardmanager.ui.CardManagerUI;
@@ -9,7 +10,8 @@ import java.util.List;
 public class CardManager {
     public static void main(String[] args){
         CardManagerUI cardManagerUI = CardManagerUI.getInstance();
-        BusinessCardManagerDao businessCardManagerDao = new BusinessCardManagerDao();
+        JdbcContext jdbcContext = new JdbcContext();
+        BusinessCardManagerDao businessCardManagerDao = new BusinessCardManagerDao(jdbcContext);
 
         while_loop:
         while(true) {
