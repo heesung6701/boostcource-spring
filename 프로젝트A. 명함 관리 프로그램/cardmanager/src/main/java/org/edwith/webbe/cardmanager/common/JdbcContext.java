@@ -42,8 +42,8 @@ public class JdbcContext {
     try (
         final Connection conn =
             DriverManager.getConnection(DBConfig.dburl, DBConfig.dbUser, DBConfig.dbpasswd);
-        final PreparedStatement ps = stmt.makePreparedStatement(conn)) {
-      ResultSet rs = ps.executeQuery();
+        final PreparedStatement ps = stmt.makePreparedStatement(conn);
+        ResultSet rs = ps.executeQuery()) {
       while(rs.next()) {
         result.add(mapper.apply(rs));
       } 
