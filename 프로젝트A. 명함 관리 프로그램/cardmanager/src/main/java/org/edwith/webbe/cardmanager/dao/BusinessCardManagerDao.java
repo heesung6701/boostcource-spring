@@ -7,7 +7,7 @@ import java.util.List;
 
 public class BusinessCardManagerDao {
   
-   final private JdbcContext jdbcContext;
+  private final JdbcContext jdbcContext;
    
    public BusinessCardManagerDao(JdbcContext jdbcContext) {
      this.jdbcContext = jdbcContext;
