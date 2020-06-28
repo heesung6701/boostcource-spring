@@ -14,6 +14,7 @@ import java.util.List;
 
 public class GuestbookDao {
   private final String SELECT_ALL = "SELECT * FROM guestbook";
+  private final String INSERT = "INSERT guestbook(name, content, regdate) values(?,?,CURRENT_TIMESTAMP())";
 
   public List<Guestbook> getGuestbooks() {
     List<Guestbook> list = new ArrayList<>();
@@ -31,6 +32,13 @@ public class GuestbookDao {
   }
 
   public void addGuestbook(Guestbook guestbook) {
-    // 코드를 작성하세요.
+    try (Connection conn = DBUtil.getConnection();
+        PreparedStatement stmt = conn.prepareStatement(INSERT)) {
+      stmt.setString(1, guestbook.getName());
+      stmt.setString(2, guestbook.getContent());
+      stmt.executeUpdate();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
   }
 }
