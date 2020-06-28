@@ -17,12 +17,13 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/guestbooks")
 public class GuestbookListServlet extends HttpServlet {
 
-    GuestbookDao guestbookDao = new GuestbookDao();
-  
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      List<Guestbook> list = guestbookDao.getGuestbooks();
-      request.setAttribute("list", list);
-      RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/guestbook/guestbooks.jsp");
-      rd.forward(request, response);
-    }
+  GuestbookDao guestbookDao = new GuestbookDao();
+
+  protected void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    List<Guestbook> list = guestbookDao.getGuestbooks();
+    request.setAttribute("list", list);
+    RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/guestbook/guestbooks.jsp");
+    rd.forward(request, response);
+  }
 }
