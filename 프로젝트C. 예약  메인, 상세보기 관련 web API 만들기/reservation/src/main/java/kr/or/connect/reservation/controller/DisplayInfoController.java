@@ -21,7 +21,8 @@ public class DisplayInfoController {
   public DisplayInfoListResult getDisplayInfoList(@RequestParam(defaultValue = "0") int categoryId,
       @RequestParam(defaultValue = "0") int start) {
 
-    int totalCount = displayInfoSerice.countByCategoryId(categoryId);
+    int totalCount = categoryId == 0 ? displayInfoSerice.countAll() 
+        : displayInfoSerice.countByCategoryId(categoryId);
     List<DisplayInfoDto> list = categoryId == 0 ? displayInfoSerice.selectAll(start)
         : displayInfoSerice.selectByCategoryId(categoryId, start);
     

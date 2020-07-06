@@ -7,4 +7,5 @@ public interface DisplayInfoService {
   public List<DisplayInfoDto> selectAll(int start);
   public List<DisplayInfoDto> selectByCategoryId(int categoryId, int start);
   public int countByCategoryId(int categoryId);
+  public int countAll();
 }

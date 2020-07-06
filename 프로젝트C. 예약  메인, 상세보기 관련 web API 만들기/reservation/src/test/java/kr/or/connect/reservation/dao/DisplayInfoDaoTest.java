@@ -61,4 +61,10 @@ public class DisplayInfoDaoTest {
     int result = displayInfoDao.countByCategoryId(3);
     Assert.assertEquals(16, result);
   }
+
+  @Test
+  public void countDisplayInfoAllTest() throws Exception {
+    int result = displayInfoDao.countAll();
+    Assert.assertTrue(result > 0);
+  }
 }

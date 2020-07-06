@@ -28,5 +28,10 @@ public class DisplayInfoServiceImpl implements DisplayInfoService{
   public int countByCategoryId(int categoryId) {
     return displayInfoDao.countByCategoryId(categoryId);
   }
+
+  @Override
+  public int countAll() {
+    return displayInfoDao.countAll();
+  }
   
 }
