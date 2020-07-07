@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import kr.or.connect.reservation.dto.ProductDto;
 import kr.or.connect.reservation.dto.DisplayInfoListResult;
 import kr.or.connect.reservation.service.DisplayInfoService;
+import kr.or.connect.reservation.service.ProductService;
 
 @RestController
 @RequestMapping(path = "/api/displayinfos")
@@ -17,14 +18,17 @@ public class DisplayInfoController {
   @Autowired
   DisplayInfoService displayInfoSerice;
 
+  @Autowired
+  ProductService productService;
+
   @GetMapping
   public DisplayInfoListResult getDisplayInfoList(@RequestParam(defaultValue = "0") int categoryId,
       @RequestParam(defaultValue = "0") int start) {
 
     int totalCount = categoryId == 0 ? displayInfoSerice.countAll() 
         : displayInfoSerice.countByCategoryId(categoryId);
-    List<ProductDto> list = categoryId == 0 ? displayInfoSerice.selectAll(start)
-        : displayInfoSerice.selectByCategoryId(categoryId, start);
+    List<ProductDto> list = categoryId == 0 ? productService.selectAll(start)
+        : productService.selectByCategoryId(categoryId, start);
     
     return new DisplayInfoListResult()
         .setTotalCount(totalCount)
