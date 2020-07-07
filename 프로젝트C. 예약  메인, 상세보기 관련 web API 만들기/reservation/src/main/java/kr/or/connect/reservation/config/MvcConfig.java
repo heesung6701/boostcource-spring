@@ -16,21 +16,21 @@ public class MvcConfig implements WebMvcConfigurer {
 
   @Override
   public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-      configurer.enable();
+    configurer.enable();
   }
 
   @Override
   public void configureViewResolvers(ViewResolverRegistry registry) {
-      registry.jsp("/WEB-INF/view/", ".jsp");
+    registry.jsp("/WEB-INF/view/", ".jsp");
   }
 
   @Override
   public void addViewControllers(ViewControllerRegistry registry) {
-      registry.addRedirectViewController("/", "/main");
+    registry.addRedirectViewController("/", "/main");
   }
 
   @Override
   public void addResourceHandlers(final ResourceHandlerRegistry registry) {
-      registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+    registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
   }
 }

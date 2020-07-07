@@ -27,19 +27,17 @@ public class DisplayInfoController {
   public DisplayInfoListResult getDisplayInfoList(@RequestParam(defaultValue = "0") int categoryId,
       @RequestParam(defaultValue = "0") int start) {
 
-    int totalCount = categoryId == 0 ? displayInfoSerice.countAll() 
+    int totalCount = categoryId == 0 ? displayInfoSerice.countAll()
         : displayInfoSerice.countByCategoryId(categoryId);
     List<ProductDto> list = categoryId == 0 ? productService.selectAll(start)
         : productService.selectByCategoryId(categoryId, start);
-    
-    return new DisplayInfoListResult()
-        .setTotalCount(totalCount)
-        .setProductCount(list.size())
+
+    return new DisplayInfoListResult().setTotalCount(totalCount).setProductCount(list.size())
         .setProducts(list);
   }
 
   @GetMapping("/{displayId}")
   public DisplayInfoResult getDisplayInfo(@PathVariable("displayId") int displayInfoId) {
     return displayInfoSerice.get(displayInfoId);
-  }   
+  }
 }

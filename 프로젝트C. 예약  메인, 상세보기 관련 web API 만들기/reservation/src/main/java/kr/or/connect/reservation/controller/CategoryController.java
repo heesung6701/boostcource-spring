@@ -12,15 +12,13 @@ import kr.or.connect.reservation.service.CategoryService;
 @RestController
 @RequestMapping(path = "/api/categories")
 public class CategoryController {
-  
+
   @Autowired
   CategoryService categoryService;
 
   @GetMapping
   public CategoryListResultDto getCategoryList() {
     List<CategoryDto> categoryList = categoryService.selectAll();
-    return new CategoryListResultDto()
-        .setSize(categoryList.size())
-        .setItems(categoryList);
+    return new CategoryListResultDto().setSize(categoryList.size()).setItems(categoryList);
   }
 }

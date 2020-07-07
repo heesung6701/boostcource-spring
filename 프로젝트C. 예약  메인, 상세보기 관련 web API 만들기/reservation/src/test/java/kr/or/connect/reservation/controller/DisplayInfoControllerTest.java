@@ -33,7 +33,7 @@ public class DisplayInfoControllerTest {
   public void configTest() throws Exception {
 
   }
-  
+
   @Test
   public void getDisplayInfoTest() throws Exception {
     mockMvc.perform(get("/api/displayinfos/1")).andExpect(status().isOk());

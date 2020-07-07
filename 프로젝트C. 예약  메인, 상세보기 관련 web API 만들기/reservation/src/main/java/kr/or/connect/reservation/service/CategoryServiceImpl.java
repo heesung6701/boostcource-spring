@@ -7,12 +7,12 @@ import kr.or.connect.reservation.dao.CategoryDao;
 import kr.or.connect.reservation.dto.CategoryDto;
 
 @Service
-public class CategoryServiceImpl implements CategoryService{
+public class CategoryServiceImpl implements CategoryService {
 
   @Autowired
   CategoryDao categoryDao;
-  
-  public List<CategoryDto> selectAll(){
+
+  public List<CategoryDto> selectAll() {
     return categoryDao.selectAll();
   }
 }

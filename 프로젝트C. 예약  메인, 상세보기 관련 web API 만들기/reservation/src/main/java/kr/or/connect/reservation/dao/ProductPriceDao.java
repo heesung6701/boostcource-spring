@@ -13,12 +13,13 @@ import static kr.or.connect.reservation.dao.ProductPriceDaoSqls.SELECT_BY_DISPLA
 
 @Repository
 public class ProductPriceDao {
-  
-  private NamedParameterJdbcTemplate jdbc;
-  private RowMapper<ProductPriceDto> rowMapper = BeanPropertyRowMapper.newInstance(ProductPriceDto.class);
 
-  public ProductPriceDao(DataSource dataSource){
-      this.jdbc = new NamedParameterJdbcTemplate(dataSource);
+  private NamedParameterJdbcTemplate jdbc;
+  private RowMapper<ProductPriceDto> rowMapper =
+      BeanPropertyRowMapper.newInstance(ProductPriceDto.class);
+
+  public ProductPriceDao(DataSource dataSource) {
+    this.jdbc = new NamedParameterJdbcTemplate(dataSource);
   }
 
   public List<ProductPriceDto> selectByDisplayInfoId(int displayInfoId) {

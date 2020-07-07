@@ -13,14 +13,15 @@ import kr.or.connect.reservation.dto.ProductImageDto;
 
 @Repository
 public class ProductImageDao {
-  
-  private NamedParameterJdbcTemplate jdbc;
-  private RowMapper<ProductImageDto> rowMapper = BeanPropertyRowMapper.newInstance(ProductImageDto.class);
 
-  public ProductImageDao(DataSource dataSource){
-      this.jdbc = new NamedParameterJdbcTemplate(dataSource);
+  private NamedParameterJdbcTemplate jdbc;
+  private RowMapper<ProductImageDto> rowMapper =
+      BeanPropertyRowMapper.newInstance(ProductImageDto.class);
+
+  public ProductImageDao(DataSource dataSource) {
+    this.jdbc = new NamedParameterJdbcTemplate(dataSource);
   }
-  
+
   public List<ProductImageDto> selectList(int displayInfoId) {
     Map<String, Object> map = new HashMap<>();
     map.put("displayInfoId", displayInfoId);

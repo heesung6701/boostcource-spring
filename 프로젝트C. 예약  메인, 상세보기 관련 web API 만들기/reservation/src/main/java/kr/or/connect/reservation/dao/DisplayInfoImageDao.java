@@ -15,10 +15,11 @@ import static kr.or.connect.reservation.dao.DisplayInfoImageDaoSqls.SELECT_BY_DI
 @Repository
 public class DisplayInfoImageDao {
   private NamedParameterJdbcTemplate jdbc;
-  private RowMapper<DisplayInfoImageDto> rowMapper = BeanPropertyRowMapper.newInstance(DisplayInfoImageDto.class);
-  
+  private RowMapper<DisplayInfoImageDto> rowMapper =
+      BeanPropertyRowMapper.newInstance(DisplayInfoImageDto.class);
+
   public DisplayInfoImageDao(DataSource dataSource) {
-      this.jdbc = new NamedParameterJdbcTemplate(dataSource);
+    this.jdbc = new NamedParameterJdbcTemplate(dataSource);
   }
 
   public List<DisplayInfoImageDto> selectByDisplayInfoId(int displayInfoId) {

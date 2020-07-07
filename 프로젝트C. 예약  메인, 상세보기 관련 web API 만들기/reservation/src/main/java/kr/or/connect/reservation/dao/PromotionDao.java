@@ -15,11 +15,11 @@ public class PromotionDao {
   private NamedParameterJdbcTemplate jdbc;
   private RowMapper<PromotionDto> rowMapper = BeanPropertyRowMapper.newInstance(PromotionDto.class);
 
-  public PromotionDao(DataSource dataSource){
-      this.jdbc = new NamedParameterJdbcTemplate(dataSource);
+  public PromotionDao(DataSource dataSource) {
+    this.jdbc = new NamedParameterJdbcTemplate(dataSource);
   }
-  
+
   public List<PromotionDto> selectAll() {
-    return jdbc.query(SELECT_ALL, rowMapper);  
+    return jdbc.query(SELECT_ALL, rowMapper);
   }
 }

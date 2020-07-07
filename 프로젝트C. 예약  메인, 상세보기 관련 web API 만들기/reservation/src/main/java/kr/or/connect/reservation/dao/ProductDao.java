@@ -16,32 +16,33 @@ import static kr.or.connect.reservation.dao.ProductDaoSqls.SELECT_BY_CATEGORY_ID
 
 @Repository
 public class ProductDao {
-  
+
   private NamedParameterJdbcTemplate jdbc;
   private RowMapper<ProductDto> rowMapper = BeanPropertyRowMapper.newInstance(ProductDto.class);
 
-  public ProductDao(DataSource dataSource){
-      this.jdbc = new NamedParameterJdbcTemplate(dataSource);
+  public ProductDao(DataSource dataSource) {
+    this.jdbc = new NamedParameterJdbcTemplate(dataSource);
   }
 
   public List<ProductDto> selectAll(int start) {
     Map<String, Object> map = new HashMap<>();
     map.put("start", start);
-    return jdbc.query(SELECT_ALL, map, rowMapper);  
+    return jdbc.query(SELECT_ALL, map, rowMapper);
   }
-  
+
   public List<ProductDto> selectByCategoryId(int categoryId, int start) {
     Map<String, Object> map = new HashMap<>();
     map.put("categoryId", categoryId);
     map.put("start", start);
-    return jdbc.query(SELECT_BY_CATEGORY_ID, map, rowMapper);  
+    return jdbc.query(SELECT_BY_CATEGORY_ID, map, rowMapper);
   }
-  
+
   public ProductDto select(int displayInfoId) {
     Map<String, Object> map = new HashMap<>();
     map.put("displayInfoId", displayInfoId);
     List<ProductDto> result = jdbc.query(SELECT_BY_ID, map, rowMapper);
-    if(result.size() == 0) return null;
+    if (result.size() == 0)
+      return null;
     return result.get(0);
   }
 }

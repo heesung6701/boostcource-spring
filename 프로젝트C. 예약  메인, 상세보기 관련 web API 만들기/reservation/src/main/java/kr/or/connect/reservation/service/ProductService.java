@@ -5,5 +5,6 @@ import kr.or.connect.reservation.dto.ProductDto;
 
 public interface ProductService {
   public List<ProductDto> selectAll(int start);
+
   public List<ProductDto> selectByCategoryId(int categoryId, int start);
 }

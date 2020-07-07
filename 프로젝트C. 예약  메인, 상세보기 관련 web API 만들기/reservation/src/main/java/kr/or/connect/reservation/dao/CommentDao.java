@@ -13,10 +13,10 @@ public class CommentDao {
 
   private NamedParameterJdbcTemplate jdbc;
 
-  public CommentDao(DataSource dataSource){
-      this.jdbc = new NamedParameterJdbcTemplate(dataSource);
+  public CommentDao(DataSource dataSource) {
+    this.jdbc = new NamedParameterJdbcTemplate(dataSource);
   }
-  
+
   public int getAverageScoreByDisplayInfoId(int displayInfoId) {
     Map<String, Object> map = new HashMap<>();
     map.put("displayInfoId", displayInfoId);

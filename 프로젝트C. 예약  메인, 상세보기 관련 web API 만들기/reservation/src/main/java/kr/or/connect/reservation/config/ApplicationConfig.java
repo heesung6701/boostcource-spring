@@ -13,8 +13,9 @@ import org.springframework.transaction.annotation.TransactionManagementConfigure
 
 @Configuration
 @PropertySource("classpath:application.properties")
-@ComponentScan(basePackages = {"kr.or.connect.reservation.dao", "kr.or.connect.reservation.service"})
-public class ApplicationConfig implements TransactionManagementConfigurer{
+@ComponentScan(
+    basePackages = {"kr.or.connect.reservation.dao", "kr.or.connect.reservation.service"})
+public class ApplicationConfig implements TransactionManagementConfigurer {
 
   @Value("${spring.datasource.driver-class-name}")
   private String driverClassName;
@@ -26,22 +27,22 @@ public class ApplicationConfig implements TransactionManagementConfigurer{
   private String password;
 
   @Bean
-  public DataSource dataSource(){
-      BasicDataSource dataSource = new BasicDataSource();
-      dataSource.setDriverClassName(driverClassName);
-      dataSource.setUrl(url);
-      dataSource.setUsername(username);
-      dataSource.setPassword(password);
-      return dataSource;
+  public DataSource dataSource() {
+    BasicDataSource dataSource = new BasicDataSource();
+    dataSource.setDriverClassName(driverClassName);
+    dataSource.setUrl(url);
+    dataSource.setUsername(username);
+    dataSource.setPassword(password);
+    return dataSource;
   }
 
   @Bean
-  public PlatformTransactionManager transactionManager(){
-      return new DataSourceTransactionManager(dataSource());
+  public PlatformTransactionManager transactionManager() {
+    return new DataSourceTransactionManager(dataSource());
   }
 
   @Override
   public PlatformTransactionManager annotationDrivenTransactionManager() {
-      return transactionManager();
+    return transactionManager();
   }
 }

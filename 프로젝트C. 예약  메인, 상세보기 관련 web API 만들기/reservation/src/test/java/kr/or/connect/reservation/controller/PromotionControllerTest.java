@@ -21,19 +21,19 @@ public class PromotionControllerTest {
 
   @Autowired
   PromotionController promotionController;
-  
+
   private MockMvc mockMvc;
-  
+
   @Before
   public void setup() {
     mockMvc = MockMvcBuilders.standaloneSetup(promotionController).build();
   }
 
   @Test
-  public void configTest() throws Exception{
-    
+  public void configTest() throws Exception {
+
   }
-  
+
   @Test
   public void getPromotionListTest() throws Exception {
     mockMvc.perform(get("/api/promotions")).andExpect(status().isOk());

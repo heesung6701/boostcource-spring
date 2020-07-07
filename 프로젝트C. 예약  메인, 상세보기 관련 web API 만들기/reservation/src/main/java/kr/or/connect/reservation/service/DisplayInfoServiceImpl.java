@@ -16,27 +16,27 @@ import kr.or.connect.reservation.dto.ProductImageDto;
 import kr.or.connect.reservation.dto.ProductPriceDto;
 
 @Service
-public class DisplayInfoServiceImpl implements DisplayInfoService{
+public class DisplayInfoServiceImpl implements DisplayInfoService {
 
   @Autowired
   DisplayInfoDao displayInfoDao;
-  
+
   @Autowired
   ProductDao productDao;
-  
+
   @Autowired
   ProductImageDao productImageDao;
-  
+
   @Autowired
   DisplayInfoImageDao displayInfoImageDao;
-  
+
   @Autowired
   CommentDao commentDao;
-  
+
   @Autowired
   ProductPriceDao productPriceDao;
-  
-  
+
+
   @Override
   public int countByCategoryId(int categoryId) {
     return displayInfoDao.countByCategoryId(categoryId);
@@ -46,20 +46,18 @@ public class DisplayInfoServiceImpl implements DisplayInfoService{
   public int countAll() {
     return displayInfoDao.countAll();
   }
-  
+
   @Override
   public DisplayInfoResult get(int displayInfoId) {
     ProductDto product = productDao.select(displayInfoId);
     List<ProductImageDto> productImages = productImageDao.selectList(displayInfoId);
-    List<DisplayInfoImageDto> displayInfoImages = displayInfoImageDao.selectByDisplayInfoId(displayInfoId);
+    List<DisplayInfoImageDto> displayInfoImages =
+        displayInfoImageDao.selectByDisplayInfoId(displayInfoId);
     int avgScore = commentDao.getAverageScoreByDisplayInfoId(displayInfoId);
-    List<ProductPriceDto> productPrices = productPriceDao.selectByDisplayInfoId(displayInfoId);  
-    
-    return new DisplayInfoResult()
-        .setProduct(product)
-        .setProductIamges(productImages)
-        .setDisplayInfoImages(displayInfoImages)
-        .setAvgScore(avgScore)
+    List<ProductPriceDto> productPrices = productPriceDao.selectByDisplayInfoId(displayInfoId);
+
+    return new DisplayInfoResult().setProduct(product).setProductIamges(productImages)
+        .setDisplayInfoImages(displayInfoImages).setAvgScore(avgScore)
         .setProductPrices(productPrices);
   }
 }
