@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import kr.or.connect.reservation.dto.ProductDto;
-import kr.or.connect.reservation.dto.DisplayInfoListResult;
-import kr.or.connect.reservation.dto.DisplayInfoResult;
-import kr.or.connect.reservation.service.DisplayInfoService;
-import kr.or.connect.reservation.service.ProductService;
+import kr.or.connect.reservation.dto.displayinfo.DisplayInfoListResult;
+import kr.or.connect.reservation.dto.displayinfo.DisplayInfoResult;
+import kr.or.connect.reservation.dto.product.ProductDto;
+import kr.or.connect.reservation.service.displayinfo.DisplayInfoService;
+import kr.or.connect.reservation.service.product.ProductService;
 
 @RestController
 @RequestMapping(path = "/api/displayinfos")

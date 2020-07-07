@@ -5,9 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import kr.or.connect.reservation.dto.CategoryDto;
-import kr.or.connect.reservation.dto.CategoryListResultDto;
-import kr.or.connect.reservation.service.CategoryService;
+import kr.or.connect.reservation.dto.category.CategoryDto;
+import kr.or.connect.reservation.dto.category.CategoryListResultDto;
+import kr.or.connect.reservation.service.category.CategoryService;
 
 @RestController
 @RequestMapping(path = "/api/categories")
