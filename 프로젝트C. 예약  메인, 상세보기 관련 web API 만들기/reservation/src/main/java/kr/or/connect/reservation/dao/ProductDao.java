@@ -9,7 +9,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 import kr.or.connect.reservation.dto.ProductDto;
-
+import kr.or.connect.reservation.dto.ProductImageDto;
 import static kr.or.connect.reservation.dao.ProductDaoSqls.SELECT_ALL;
 import static kr.or.connect.reservation.dao.ProductDaoSqls.SELECT_BY_ID;
 import static kr.or.connect.reservation.dao.ProductDaoSqls.SELECT_BY_CATEGORY_ID;
