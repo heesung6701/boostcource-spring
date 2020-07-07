@@ -33,15 +33,9 @@ public class DisplayInfoControllerTest {
   public void configTest() throws Exception {
 
   }
-
+  
   @Test
-  public void getCategoryListTest() throws Exception {
-    mockMvc.perform(get("/api/categories")).andExpect(status().isOk());
-    mockMvc.perform(get("/api/categories?categoryId=0")).andExpect(status().isOk());
-    mockMvc.perform(get("/api/categories?categoryId=0&start=0")).andExpect(status().isOk());
-    mockMvc.perform(get("/api/categories?categoryId=0&start=5")).andExpect(status().isOk());
-    mockMvc.perform(get("/api/categories?categoryId=3&start=0")).andExpect(status().isOk());
-    mockMvc.perform(get("/api/categories?categoryId=5&start=0")).andExpect(status().isOk());
-    mockMvc.perform(get("/api/categories?categoryId=8&start=5")).andExpect(status().isOk());
+  public void getDisplayInfoTest() throws Exception {
+    mockMvc.perform(get("/api/displayinfos/1")).andExpect(status().isOk());
   }
 }
