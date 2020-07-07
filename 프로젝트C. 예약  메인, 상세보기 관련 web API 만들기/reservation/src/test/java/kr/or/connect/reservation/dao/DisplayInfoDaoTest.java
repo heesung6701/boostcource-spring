@@ -49,10 +49,17 @@ public class DisplayInfoDaoTest {
 
   @Test
   public void getDisplayInfoByCategoryIdTest() throws Exception {
-    List<ProductDto> displayInfoList = displayInfoDao.selectByCategoryId(3, 0);
-    Assert.assertNotNull(displayInfoList);
-    Assert.assertTrue(displayInfoList.size() > 0);
-    Assert.assertEquals(0, displayInfoList.stream().filter(it -> it.getCategoryId() != 3).count());
+    List<ProductDto> productList = displayInfoDao.selectByCategoryId(3, 0);
+    Assert.assertNotNull(productList);
+    Assert.assertTrue(productList.size() > 0);
+    Assert.assertEquals(0, productList.stream().filter(it -> it.getCategoryId() != 3).count());
+  }
+
+  @Test
+  public void getDisplayInfoByIdTest() throws Exception {
+    ProductDto product = displayInfoDao.select(1);
+    Assert.assertNotNull(product);
+    Assert.assertEquals("전시", product.getName());
   }
 
   @Test

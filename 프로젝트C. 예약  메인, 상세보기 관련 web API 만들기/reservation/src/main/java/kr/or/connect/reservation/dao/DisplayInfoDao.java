@@ -2,6 +2,7 @@ package kr.or.connect.reservation.dao;
 
 import static kr.or.connect.reservation.dao.DisplayInfoDaoSqls.SELECT_ALL;
 import static kr.or.connect.reservation.dao.DisplayInfoDaoSqls.SELECT_BY_CATEGORY_ID;
+import static kr.or.connect.reservation.dao.DisplayInfoDaoSqls.SELECT_BY_ID;
 import static kr.or.connect.reservation.dao.DisplayInfoDaoSqls.COUNT_BY_CATEGORY_ID;
 import static kr.or.connect.reservation.dao.DisplayInfoDaoSqls.COUNT_ALL;
 import java.util.Collections;
@@ -37,6 +38,14 @@ public class DisplayInfoDao {
     map.put("categoryId", categoryId);
     map.put("start", start);
     return jdbc.query(SELECT_BY_CATEGORY_ID, map, rowMapper);  
+  }
+  
+  public ProductDto select(int displayInfoId) {
+    Map<String, Object> map = new HashMap<>();
+    map.put("displayInfoId", displayInfoId);
+    List<ProductDto> result = jdbc.query(SELECT_BY_ID, map, rowMapper);
+    if(result.size() == 0) return null;
+    return result.get(0);
   }
 
   public int countByCategoryId(int categoryId) {
