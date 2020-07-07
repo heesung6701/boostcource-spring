@@ -10,8 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import kr.or.connect.reservation.config.ApplicationConfig;
-import kr.or.connect.reservation.dto.CategoryDto;
-import kr.or.connect.reservation.dto.DisplayInfoDto;
+import kr.or.connect.reservation.dto.ProductDto;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {ApplicationConfig.class})
@@ -36,21 +35,21 @@ public class DisplayInfoDaoTest {
   
   @Test
   public void getDisplayInfoAllTest() throws Exception {
-    List<DisplayInfoDto> displayInfoList = displayInfoDao.selectAll(0);
+    List<ProductDto> displayInfoList = displayInfoDao.selectAll(0);
     Assert.assertNotNull(displayInfoList);
     Assert.assertTrue(displayInfoList.size() > 0);
   }
 
   @Test
   public void getDisplayInfoAllWithStartTest() throws Exception {
-    List<DisplayInfoDto> displayInfoList = displayInfoDao.selectAll(57);
+    List<ProductDto> displayInfoList = displayInfoDao.selectAll(57);
     Assert.assertNotNull(displayInfoList);
     Assert.assertEquals(2, displayInfoList.size());
   }
 
   @Test
   public void getDisplayInfoByCategoryIdTest() throws Exception {
-    List<DisplayInfoDto> displayInfoList = displayInfoDao.selectByCategoryId(3, 0);
+    List<ProductDto> displayInfoList = displayInfoDao.selectByCategoryId(3, 0);
     Assert.assertNotNull(displayInfoList);
     Assert.assertTrue(displayInfoList.size() > 0);
     Assert.assertEquals(0, displayInfoList.stream().filter(it -> it.getCategoryId() != 3).count());

@@ -18,24 +18,24 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebAppConfiguration
 @ContextConfiguration(classes = {ApplicationConfig.class, MvcConfig.class})
 public class DisplayInfoControllerTest {
-  
+
   @Autowired
   DisplayInfoController displayInfoController;
-  
+
   private MockMvc mockMvc;
-  
+
   @Before
   public void setup() {
     mockMvc = MockMvcBuilders.standaloneSetup(displayInfoController).build();
   }
 
   @Test
-  public void configTest() throws Exception{
-    
+  public void configTest() throws Exception {
+
   }
-  
+
   @Test
-  public void getCategoryListTest() throws Exception{
+  public void getCategoryListTest() throws Exception {
     mockMvc.perform(get("/api/categories")).andExpect(status().isOk());
     mockMvc.perform(get("/api/categories?categoryId=0")).andExpect(status().isOk());
     mockMvc.perform(get("/api/categories?categoryId=0&start=0")).andExpect(status().isOk());
@@ -44,5 +44,4 @@ public class DisplayInfoControllerTest {
     mockMvc.perform(get("/api/categories?categoryId=5&start=0")).andExpect(status().isOk());
     mockMvc.perform(get("/api/categories?categoryId=8&start=5")).andExpect(status().isOk());
   }
-
 }

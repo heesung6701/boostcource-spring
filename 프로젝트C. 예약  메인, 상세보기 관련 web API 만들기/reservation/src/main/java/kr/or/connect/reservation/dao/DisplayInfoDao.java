@@ -14,25 +14,25 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 import com.mysql.cj.x.protobuf.MysqlxCrud.Collection;
-import kr.or.connect.reservation.dto.DisplayInfoDto;
+import kr.or.connect.reservation.dto.ProductDto;
 
 @Repository
 public class DisplayInfoDao {
   
   private NamedParameterJdbcTemplate jdbc;
-  private RowMapper<DisplayInfoDto> rowMapper = BeanPropertyRowMapper.newInstance(DisplayInfoDto.class);
+  private RowMapper<ProductDto> rowMapper = BeanPropertyRowMapper.newInstance(ProductDto.class);
 
   public DisplayInfoDao(DataSource dataSource){
       this.jdbc = new NamedParameterJdbcTemplate(dataSource);
   }
 
-  public List<DisplayInfoDto> selectAll(int start) {
+  public List<ProductDto> selectAll(int start) {
     Map<String, Object> map = new HashMap<>();
     map.put("start", start);
     return jdbc.query(SELECT_ALL, map, rowMapper);  
   }
   
-  public List<DisplayInfoDto> selectByCategoryId(int categoryId, int start) {
+  public List<ProductDto> selectByCategoryId(int categoryId, int start) {
     Map<String, Object> map = new HashMap<>();
     map.put("categoryId", categoryId);
     map.put("start", start);

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import kr.or.connect.reservation.dao.CategoryDao;
 import kr.or.connect.reservation.dao.DisplayInfoDao;
 import kr.or.connect.reservation.dto.CategoryDto;
-import kr.or.connect.reservation.dto.DisplayInfoDto;
+import kr.or.connect.reservation.dto.ProductDto;
 
 @Service
 public class DisplayInfoServiceImpl implements DisplayInfoService{
@@ -15,12 +15,12 @@ public class DisplayInfoServiceImpl implements DisplayInfoService{
   DisplayInfoDao displayInfoDao;
 
   @Override
-  public List<DisplayInfoDto> selectAll(int start) {
+  public List<ProductDto> selectAll(int start) {
     return displayInfoDao.selectAll(start);
   }
 
   @Override
-  public List<DisplayInfoDto> selectByCategoryId(int categoryId, int start) {
+  public List<ProductDto> selectByCategoryId(int categoryId, int start) {
     return displayInfoDao.selectByCategoryId(categoryId, start);
   }
 

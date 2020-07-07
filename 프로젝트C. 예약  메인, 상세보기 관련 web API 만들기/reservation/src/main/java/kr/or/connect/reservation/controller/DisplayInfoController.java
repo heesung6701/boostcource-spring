@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import kr.or.connect.reservation.dto.DisplayInfoDto;
+import kr.or.connect.reservation.dto.ProductDto;
 import kr.or.connect.reservation.dto.DisplayInfoListResult;
 import kr.or.connect.reservation.service.DisplayInfoService;
 
@@ -23,7 +23,7 @@ public class DisplayInfoController {
 
     int totalCount = categoryId == 0 ? displayInfoSerice.countAll() 
         : displayInfoSerice.countByCategoryId(categoryId);
-    List<DisplayInfoDto> list = categoryId == 0 ? displayInfoSerice.selectAll(start)
+    List<ProductDto> list = categoryId == 0 ? displayInfoSerice.selectAll(start)
         : displayInfoSerice.selectByCategoryId(categoryId, start);
     
     return new DisplayInfoListResult()

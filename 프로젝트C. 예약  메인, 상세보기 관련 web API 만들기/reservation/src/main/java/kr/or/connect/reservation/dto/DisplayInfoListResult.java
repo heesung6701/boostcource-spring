@@ -6,7 +6,7 @@ public class DisplayInfoListResult {
 
   private int totalCount;
   private int productCount;
-  private List<DisplayInfoDto> products;
+  private List<ProductDto> products;
   public int getTotalCount() {
     return totalCount;
   }
@@ -21,10 +21,10 @@ public class DisplayInfoListResult {
     this.productCount = productCount;
     return this;
   }
-  public List<DisplayInfoDto> getProducts() {
+  public List<ProductDto> getProducts() {
     return products;
   }
-  public DisplayInfoListResult setProducts(List<DisplayInfoDto> products) {
+  public DisplayInfoListResult setProducts(List<ProductDto> products) {
     this.products = products;
     return this;
   }
