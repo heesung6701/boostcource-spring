@@ -41,6 +41,15 @@ public class CommentDaoTest {
   }
 
   @Test
+  public void getTotalByProductId() throws Exception {
+    int total = commentDao.getCountByProductId(1);
+    Assert.assertNotNull(total);
+    Assert.assertEquals(15, total);
+    
+  }
+  
+  
+  @Test
   public void selectByProductIdTest() throws Exception {
     List<CommentDto> comments = commentDao.selectByProductId(1, 0);
     Assert.assertNotNull(comments);

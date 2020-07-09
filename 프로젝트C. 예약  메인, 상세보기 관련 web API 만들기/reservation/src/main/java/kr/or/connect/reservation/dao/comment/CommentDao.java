@@ -11,7 +11,8 @@ import java.util.List;
 import java.util.Map;
 
 import static kr.or.connect.reservation.dao.comment.CommentDaoSqls.AVERAGE_SCORE_BY_DISPLAY_INFO_ID;
-import static kr.or.connect.reservation.dao.comment.CommentDaoSqls.SELECT_BY_PRODUCT_ID;;
+import static kr.or.connect.reservation.dao.comment.CommentDaoSqls.COUNT_BY_PRODUCT_ID;
+import static kr.or.connect.reservation.dao.comment.CommentDaoSqls.SELECT_BY_PRODUCT_ID;
 
 @Repository
 public class CommentDao {
@@ -28,6 +29,11 @@ public class CommentDao {
     map.put("displayInfoId", displayInfoId);
     return jdbc.queryForObject(AVERAGE_SCORE_BY_DISPLAY_INFO_ID, map, Integer.class);
   }
+  public int getCountByProductId(int productId) {
+    Map<String, Object> map = new HashMap<>();
+    map.put("productId", productId);
+    return jdbc.queryForObject(COUNT_BY_PRODUCT_ID, map, Integer.class);
+  }
   
   public List<CommentDto> selectByProductId(int productId, int start) {
     Map<String, Object> map = new HashMap<>();
@@ -35,4 +41,5 @@ public class CommentDao {
     map.put("start", start);
     return jdbc.query(SELECT_BY_PRODUCT_ID, map, rowMapper);
   }
+  
 }
