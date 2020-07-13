@@ -23,7 +23,9 @@ public class UserServiceImpl implements UserService {
   @Override
   @Transactional
   public long addUser(User user) {
-    return userDao.addUser(user);
+    long userId = userDao.addUser(user);
+    userRoleDao.addUserRole(new UserRole().setUserId(userId).setRoleName("USER"));
+    return userId;
   }
 
   @Override
