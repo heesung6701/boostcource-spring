@@ -1,9 +1,6 @@
 package kr.or.connect.reservation.dao.user;
 
-import static kr.or.connect.reservation.dao.user.UserDaoSqls.SELECT_ALL_BY_EMAIL;
 import java.sql.Connection;
-import java.util.HashMap;
-import java.util.Map;
 import javax.sql.DataSource;
 import org.junit.Assert;
 import org.junit.Test;

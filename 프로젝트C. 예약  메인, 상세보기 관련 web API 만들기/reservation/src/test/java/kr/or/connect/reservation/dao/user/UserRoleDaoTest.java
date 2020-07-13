@@ -7,9 +7,11 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import kr.or.connect.reservation.config.ApplicationConfig;
+import kr.or.connect.reservation.dto.user.User;
 import kr.or.connect.reservation.dto.user.UserRole;
 
 
@@ -38,5 +40,11 @@ public class UserRoleDaoTest {
   public void getRolesByEmailTest() throws Exception {
     List<UserRole> roles = userRoleDao.getRolesByEmail("carami@connect.co.kr");
     Assert.assertEquals(2, roles.size());
+  }
+
+  @Test
+  public void addUserRoleTest () throws Exception{
+      UserRole dummyUser = new UserRole().setRoleName("USER").setUserId(25L);
+      userRoleDao.addUserRole(dummyUser);
   }
 }
