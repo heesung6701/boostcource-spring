@@ -1,4 +1,4 @@
-package kr.or.connect.reservation.dto.reservationinfo;
+package kr.or.connect.reservation.entity.reservationinfo;
 
 public class ReservationInfoPriceEntity {
   private int id;

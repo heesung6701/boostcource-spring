@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import kr.or.connect.reservation.dto.reservationinfo.ReservationInfoDto;
-import kr.or.connect.reservation.dto.reservationinfo.ReservationInfoResult;
+import kr.or.connect.reservation.dto.reservationinfo.ReservationInfoAddDto;
+import kr.or.connect.reservation.dto.reservationinfo.ReservationInfoAddResult;
 import kr.or.connect.reservation.service.reservaioninfo.ReservationInfoService;
 
 @RestController
@@ -20,8 +20,8 @@ public class ReservationInfoController {
   
   @PostMapping
   @ResponseBody
-  public ReservationInfoResult addRsercationInfo(@RequestBody ReservationInfoDto reservationInfoDto) throws ParseException {
-    ReservationInfoResult result = reservationInfoService.addReservationInfo(reservationInfoDto);
+  public ReservationInfoAddResult addRsercationInfo(@RequestBody ReservationInfoAddDto reservationInfoDto) throws ParseException {
+    ReservationInfoAddResult result = reservationInfoService.addReservationInfo(reservationInfoDto);
     return result;
   }
 }

@@ -8,10 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import kr.or.connect.reservation.dao.reservationinfo.ReservationInfoDao;
 import kr.or.connect.reservation.dao.reservationinfo.ReservationInfoPriceDao;
-import kr.or.connect.reservation.dto.reservationinfo.ReservationInfoDto;
-import kr.or.connect.reservation.dto.reservationinfo.ReservationInfoEntity;
-import kr.or.connect.reservation.dto.reservationinfo.ReservationInfoPriceEntity;
-import kr.or.connect.reservation.dto.reservationinfo.ReservationInfoResult;
+import kr.or.connect.reservation.dto.reservationinfo.ReservationInfoAddDto;
+import kr.or.connect.reservation.entity.reservationinfo.ReservationInfoEntity;
+import kr.or.connect.reservation.entity.reservationinfo.ReservationInfoPriceEntity;
+import kr.or.connect.reservation.dto.reservationinfo.ReservationInfoAddResult;
 
 @Service
 public class ReservationInfoServiceImpl implements ReservationInfoService{
@@ -23,7 +23,7 @@ public class ReservationInfoServiceImpl implements ReservationInfoService{
   ReservationInfoPriceDao reservationInfoPriceDao;
   
   @Override
-  public ReservationInfoResult addReservationInfo(ReservationInfoDto reservationInfoDto) {
+  public ReservationInfoAddResult addReservationInfo(ReservationInfoAddDto reservationInfoDto) {
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY.MM.DD");
     Date date;
     try {
@@ -45,7 +45,7 @@ public class ReservationInfoServiceImpl implements ReservationInfoService{
     });
     ReservationInfoEntity reservationInfoEntity = reservationInfoDao.selectById(id);
     List<ReservationInfoPriceEntity> priceEntities = reservationInfoPriceDao.selectByReservaionInfoId(id);
-    return new ReservationInfoResult()
+    return new ReservationInfoAddResult()
         .setId(reservationInfoEntity.getId())
         .setDisplayInfoId(reservationInfoEntity.getDisplayInfoId())
         .setProductPriceId(reservationInfoEntity.getProductId())

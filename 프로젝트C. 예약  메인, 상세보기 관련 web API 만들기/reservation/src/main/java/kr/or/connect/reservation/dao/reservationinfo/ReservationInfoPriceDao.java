@@ -11,7 +11,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
-import kr.or.connect.reservation.dto.reservationinfo.ReservationInfoPriceEntity;
+import kr.or.connect.reservation.entity.reservationinfo.ReservationInfoPriceEntity;
 
 import static kr.or.connect.reservation.dao.reservationinfo.ReservationInfoPriceDaoSqls.SELECT_BY_RESERVATION_INFO_ID;
 

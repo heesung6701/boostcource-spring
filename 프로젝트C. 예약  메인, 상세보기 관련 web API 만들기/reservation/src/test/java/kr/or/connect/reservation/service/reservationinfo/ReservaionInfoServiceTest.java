@@ -18,11 +18,11 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import kr.or.connect.reservation.config.ApplicationConfig;
 import kr.or.connect.reservation.dao.reservationinfo.ReservationInfoDao;
 import kr.or.connect.reservation.dao.reservationinfo.ReservationInfoPriceDao;
-import kr.or.connect.reservation.dto.reservationinfo.ReservationInfoDto;
-import kr.or.connect.reservation.dto.reservationinfo.ReservationInfoEntity;
+import kr.or.connect.reservation.dto.reservationinfo.ReservationInfoAddDto;
+import kr.or.connect.reservation.entity.reservationinfo.ReservationInfoEntity;
 import kr.or.connect.reservation.dto.reservationinfo.ReservationInfoPriceDto;
-import kr.or.connect.reservation.dto.reservationinfo.ReservationInfoPriceEntity;
-import kr.or.connect.reservation.dto.reservationinfo.ReservationInfoResult;
+import kr.or.connect.reservation.entity.reservationinfo.ReservationInfoPriceEntity;
+import kr.or.connect.reservation.dto.reservationinfo.ReservationInfoAddResult;
 import kr.or.connect.reservation.service.reservaioninfo.ReservationInfoService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -59,13 +59,13 @@ public class ReservaionInfoServiceTest {
     when(reservationInfoPriceDao.selectByReservaionInfoId(anyInt())).thenReturn(
         Arrays.asList(new ReservationInfoPriceEntity().setId(21).setCount(2).setProductPriceId(3).setReservationInfoId(17)));
 
-    ReservationInfoDto reservationInfoDto = new ReservationInfoDto()
+    ReservationInfoAddDto reservationInfoDto = new ReservationInfoAddDto()
         .setProductId(1)
         .setDisplayInfoId(1)
         .setReservationYearMonthDay("2020.01.02")
         .setUserId(1)
         .setPrices(Arrays.asList(new ReservationInfoPriceDto().setCount(2).setProductPriceId(3)));
-    ReservationInfoResult result = reservationInfoService.addReservationInfo(reservationInfoDto);
+    ReservationInfoAddResult result = reservationInfoService.addReservationInfo(reservationInfoDto);
     Assert.assertEquals(0, result.getCancelFlag());
     Assert.assertEquals(1, result.getPrices().size());
   }

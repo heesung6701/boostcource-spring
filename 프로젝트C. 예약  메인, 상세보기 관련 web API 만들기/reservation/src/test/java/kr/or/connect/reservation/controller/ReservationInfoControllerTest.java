@@ -15,7 +15,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import kr.or.connect.reservation.config.ApplicationConfig;
 import kr.or.connect.reservation.config.MvcConfig;
 import kr.or.connect.reservation.config.SecurityConfig;
-import kr.or.connect.reservation.dto.reservationinfo.ReservationInfoDto;
+import kr.or.connect.reservation.dto.reservationinfo.ReservationInfoAddDto;
 import kr.or.connect.reservation.dto.reservationinfo.ReservationInfoPriceDto;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -40,7 +40,7 @@ public class ReservationInfoControllerTest {
 
   @Test
   public void addReservationInfoTest() throws Exception {
-    ReservationInfoDto reservationInfoDto = new ReservationInfoDto()
+    ReservationInfoAddDto reservationInfoDto = new ReservationInfoAddDto()
         .setProductId(1)
         .setDisplayInfoId(1)
         .setReservationYearMonthDay("2020.01.02")
