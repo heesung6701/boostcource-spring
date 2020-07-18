@@ -24,7 +24,7 @@ public class ReservationInfoServiceImpl implements ReservationInfoService{
   
   @Override
   public ReservationInfoAddResult addReservationInfo(ReservationInfoAddDto reservationInfoDto) {
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY.MM.DD");
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.DD");
     Date date;
     try {
       date = simpleDateFormat.parse(reservationInfoDto.getReservationYearMonthDay()); 
@@ -37,12 +37,12 @@ public class ReservationInfoServiceImpl implements ReservationInfoService{
         .setProductId(reservationInfoDto.getProductId())
         .setUserId(reservationInfoDto.getUserId())
         .setReservationDate(date));
-    reservationInfoDto.getPrices().stream().forEach(it -> {
+    reservationInfoDto.getPrices().stream().forEach(it -> 
       reservationInfoPriceDao.insert(new ReservationInfoPriceEntity()
           .setReservationInfoId((int)id)
           .setCount(it.getCount())
-          .setProductPriceId(it.getProductPriceId()));
-    });
+          .setProductPriceId(it.getProductPriceId()))
+    );
     ReservationInfoEntity reservationInfoEntity = reservationInfoDao.selectById(id);
     List<ReservationInfoPriceEntity> priceEntities = reservationInfoPriceDao.selectByReservaionInfoId(id);
     return new ReservationInfoAddResult()

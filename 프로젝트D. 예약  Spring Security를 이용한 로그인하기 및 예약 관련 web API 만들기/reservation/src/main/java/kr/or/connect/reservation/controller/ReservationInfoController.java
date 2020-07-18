@@ -1,6 +1,5 @@
 package kr.or.connect.reservation.controller;
 
-import java.text.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,8 +19,7 @@ public class ReservationInfoController {
   
   @PostMapping
   @ResponseBody
-  public ReservationInfoAddResult addRsercationInfo(@RequestBody ReservationInfoAddDto reservationInfoDto) throws ParseException {
-    ReservationInfoAddResult result = reservationInfoService.addReservationInfo(reservationInfoDto);
-    return result;
+  public ReservationInfoAddResult addRsercationInfo(@RequestBody ReservationInfoAddDto reservationInfoAddDto) {
+    return reservationInfoService.addReservationInfo(reservationInfoAddDto);
   }
 }
