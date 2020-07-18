@@ -11,6 +11,10 @@ public class ReservationInfoEntity {
   private int cancelFlag;
   private Date createDate;
   private Date modifyDate;
+
+  private String productDescription;
+  private String productContent;
+  private int sumPrice;
   
   public ReservationInfoEntity() {
     this.createDate = new Date();
@@ -71,6 +75,27 @@ public class ReservationInfoEntity {
   }
   public ReservationInfoEntity setModifyDate(Date modifyDate) {
     this.modifyDate = modifyDate;
+    return this;
+  }
+  public String getProductDescription() {
+    return productDescription;
+  }
+  public ReservationInfoEntity setProductDescription(String productDescription) {
+    this.productDescription = productDescription;
+    return this;
+  }
+  public String getProductContent() {
+    return productContent;
+  }
+  public ReservationInfoEntity setProductContent(String productContent) {
+    this.productContent = productContent;
+    return this;
+  }
+  public int getSumPrice() {
+    return sumPrice;
+  }
+  public ReservationInfoEntity setSumPrice(int sumPrice) {
+    this.sumPrice = sumPrice;
     return this;
   }
 }

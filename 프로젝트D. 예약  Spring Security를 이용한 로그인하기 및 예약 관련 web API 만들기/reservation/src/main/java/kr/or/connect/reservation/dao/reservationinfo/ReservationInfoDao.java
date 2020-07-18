@@ -1,6 +1,7 @@
 package kr.or.connect.reservation.dao.reservationinfo;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.sql.DataSource;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Repository;
 import kr.or.connect.reservation.entity.reservationinfo.ReservationInfoEntity;
 
 import static kr.or.connect.reservation.dao.reservationinfo.ReservationInfoDaoSqls.SELECT_BY_ID;
+import static kr.or.connect.reservation.dao.reservationinfo.ReservationInfoDaoSqls.SELECT_BY_USER_ID;;
 
 @Repository
 public class ReservationInfoDao {
@@ -36,5 +38,11 @@ public class ReservationInfoDao {
     Map<String, Object> map = new HashMap<>();
     map.put("id", id);
     return jdbc.queryForObject(SELECT_BY_ID, map, rowMapper);
+  }
+
+  public List<ReservationInfoEntity> selectByUserId(long userId) {
+    Map<String, Object> map = new HashMap<>();
+    map.put("userId", userId);
+    return jdbc.query(SELECT_BY_USER_ID, map, rowMapper);
   }
 }
