@@ -47,7 +47,7 @@ public class ReservationInfoDaoTest {
   @Test
   public void selectByIdTest() throws Exception {
     ReservationInfoEntity result = reservationInfoDao.selectById(4);
-    Assert.assertEquals(1, result.getDisplayInfoId());
-    Assert.assertEquals(1, result.getId());
+    Assert.assertEquals(2, result.getDisplayInfoId());
+    Assert.assertEquals(4, result.getId());
   }
 }
