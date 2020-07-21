@@ -1,5 +1,6 @@
 package kr.or.connect.reservation.controller;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import java.util.Arrays;
@@ -53,7 +54,14 @@ public class ReservationInfoControllerTest {
         .contentType(MediaType.APPLICATION_JSON)
         .accept(MediaType.APPLICATION_JSON)
         .content(content)
-        .principal(new UserPrincipal("USER")))
+        .principal(new UserPrincipal("heesung6701@naver.com")))
+        .andExpect(status().isOk());
+  }
+  
+  @Test
+  public void getByUsrIdTest() throws Exception {
+    mockMvc.perform(get("/api/reservationInfos")
+        .principal(new UserPrincipal("heesung6701@naver.com")))
         .andExpect(status().isOk());
   }
 }
