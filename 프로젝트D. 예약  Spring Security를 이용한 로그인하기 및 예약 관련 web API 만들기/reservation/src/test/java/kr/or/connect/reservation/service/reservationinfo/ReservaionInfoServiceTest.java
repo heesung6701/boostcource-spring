@@ -2,9 +2,11 @@ package kr.or.connect.reservation.service.reservationinfo;
 
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyInt;
+import static org.mockito.Matchers.anyLong;
 import static org.mockito.Mockito.when;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.List;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,6 +25,7 @@ import kr.or.connect.reservation.entity.reservationinfo.ReservationInfoEntity;
 import kr.or.connect.reservation.dto.reservationinfo.ReservationInfoPriceDto;
 import kr.or.connect.reservation.entity.reservationinfo.ReservationInfoPriceEntity;
 import kr.or.connect.reservation.dto.reservationinfo.ReservationInfoAddResult;
+import kr.or.connect.reservation.dto.reservationinfo.ReservationInfoDto;
 import kr.or.connect.reservation.service.reservaioninfo.ReservationInfoService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -68,5 +71,12 @@ public class ReservaionInfoServiceTest {
     ReservationInfoAddResult result = reservationInfoService.addReservationInfo(reservationInfoDto);
     Assert.assertEquals(0, result.getCancelFlag());
     Assert.assertEquals(1, result.getPrices().size());
+  }
+  
+  @Test
+  public void getListByUserId() throws Exception {
+    when(reservationInfoDao.selectByUserId(anyLong())).thenReturn(Arrays.asList(new ReservationInfoEntity(), new ReservationInfoEntity()));
+    List<ReservationInfoDto> list = reservationInfoService.getListByUserId(1);
+    Assert.assertEquals(2, list.size());
   }
 }

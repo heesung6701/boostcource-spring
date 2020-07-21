@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import kr.or.connect.reservation.dao.reservationinfo.ReservationInfoDao;
@@ -12,6 +13,7 @@ import kr.or.connect.reservation.dto.reservationinfo.ReservationInfoAddDto;
 import kr.or.connect.reservation.entity.reservationinfo.ReservationInfoEntity;
 import kr.or.connect.reservation.entity.reservationinfo.ReservationInfoPriceEntity;
 import kr.or.connect.reservation.dto.reservationinfo.ReservationInfoAddResult;
+import kr.or.connect.reservation.dto.reservationinfo.ReservationInfoDto;
 
 @Service
 public class ReservationInfoServiceImpl implements ReservationInfoService{
@@ -55,5 +57,22 @@ public class ReservationInfoServiceImpl implements ReservationInfoService{
         .setCreateDate(reservationInfoEntity.getCreateDate().getTime())
         .setModifyDate(reservationInfoEntity.getModifyDate().getTime())
         .setPrices(priceEntities);
+  }
+  
+  @Override
+  public List<ReservationInfoDto> getListByUserId(long userId) {
+    return reservationInfoDao.selectByUserId(userId).stream().map(it -> new ReservationInfoDto()
+        .setId(it.getId())
+        .setDisplayInfoId(it.getDisplayInfoId())
+        .setUserId(it.getUserId())
+        .setReservationDate(it.getReservationDate())
+        .setCancelFlag(it.getCancelFlag())
+        .setCancelFlag(it.getCancelFlag())
+        .setCreateDate(it.getCreateDate())
+        .setModifyDate(it.getModifyDate())
+        .setProductContent(it.getProductContent())
+        .setProductDescription(it.getProductDescription())
+        .setSumPrice(it.getSumPrice())
+        ).collect(Collectors.toList());
   }
 }
