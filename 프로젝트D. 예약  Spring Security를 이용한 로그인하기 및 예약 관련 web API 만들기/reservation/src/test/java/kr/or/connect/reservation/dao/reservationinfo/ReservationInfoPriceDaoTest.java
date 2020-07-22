@@ -35,7 +35,7 @@ public class ReservationInfoPriceDaoTest {
   @Test
   public void insertTest() throws Exception {
     ReservationInfoPriceEntity dummy = new ReservationInfoPriceEntity()
-        .setReservationInfoId(1)
+        .setReservationInfoId(15)
         .setProductPriceId(1)
         .setCount(1);
     reservationInfoPriceDao.insert(dummy);
@@ -45,5 +45,16 @@ public class ReservationInfoPriceDaoTest {
   public void selectTest() throws Exception {
     List<ReservationInfoPriceEntity> result = reservationInfoPriceDao.selectByReservaionInfoId(4);
     Assert.assertEquals(3, result.size());
+  }
+  
+  @Test
+  public void deleteByReservationInfoIdTest() throws Exception {
+    ReservationInfoPriceEntity dummy = new ReservationInfoPriceEntity()
+        .setReservationInfoId(16)
+        .setProductPriceId(1)
+        .setCount(1);
+    reservationInfoPriceDao.insert(dummy);
+    long result = reservationInfoPriceDao.deleteByReservationInfoId(16);
+    Assert.assertEquals(1, result);
   }
 }

@@ -15,4 +15,8 @@ public class ReservationInfoDaoSqls {
           + " LEFT JOIN PRODUCT_PRICE pp ON rip.product_price_id = pp.id"
           + " WHERE ri.user_id = :userId"
           + " GROUP BY ri.id";  
+  
+  public static final String DELETE_BY_ID = 
+      "DELETE FROM RESERVATION_INFO ri"
+          + " WHERE ri.id = :reservationInfoId";
 }

@@ -13,6 +13,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 import kr.or.connect.reservation.config.ApplicationConfig;
+import kr.or.connect.reservation.dto.reservationinfo.ReservationInfoDto;
 import kr.or.connect.reservation.entity.reservationinfo.ReservationInfoEntity;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -59,5 +60,19 @@ public class ReservationInfoDaoTest {
     List<ReservationInfoEntity> result = reservationInfoDao.selectByUserId(4);
     Assert.assertEquals(1, result.size());
     Assert.assertEquals(13000, result.get(0).getSumPrice());
+  }
+  
+  @Test
+  public void deleteByReservationInfoIdTest() throws Exception {
+    Calendar calendar = Calendar.getInstance();
+    calendar.set(2020, 1, 2);
+    ReservationInfoEntity dummy = new ReservationInfoEntity()
+        .setProductId(1)
+        .setDisplayInfoId(1)
+        .setReservationDate(calendar.getTime())
+        .setUserId(1);
+    long reservationInfoId = reservationInfoDao.insert(dummy);
+    long result = reservationInfoDao.deleteById(reservationInfoId);
+    Assert.assertEquals(1,  result);
   }
 }

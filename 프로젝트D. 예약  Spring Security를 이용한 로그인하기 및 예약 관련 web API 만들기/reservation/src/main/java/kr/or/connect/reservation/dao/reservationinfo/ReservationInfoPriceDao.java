@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 import kr.or.connect.reservation.entity.reservationinfo.ReservationInfoPriceEntity;
 
 import static kr.or.connect.reservation.dao.reservationinfo.ReservationInfoPriceDaoSqls.SELECT_BY_RESERVATION_INFO_ID;
+import static kr.or.connect.reservation.dao.reservationinfo.ReservationInfoPriceDaoSqls.DELETE_BY_RESERVATION_INFO_ID;
 
 @Repository
 public class ReservationInfoPriceDao {
@@ -33,9 +34,15 @@ public class ReservationInfoPriceDao {
     return insertAction.executeAndReturnKey(params).longValue();
   }
   
-  public List<ReservationInfoPriceEntity> selectByReservaionInfoId(long reservationId) {
+  public List<ReservationInfoPriceEntity> selectByReservaionInfoId(long reservationInfoId) {
     Map<String, Object> map = new HashMap<>();
-    map.put("reservation_info_id", reservationId);
+    map.put("reservationInfoId", reservationInfoId);
     return jdbc.query(SELECT_BY_RESERVATION_INFO_ID, map, rowMapper);
+  }
+  
+  public long deleteByReservationInfoId(long reservationInfoId) {
+    Map<String, Object> map = new HashMap<>();
+    map.put("reservationInfoId", reservationInfoId);
+    return jdbc.update(DELETE_BY_RESERVATION_INFO_ID, map);
   }
 }
