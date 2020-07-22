@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import kr.or.connect.reservation.dao.reservationinfo.ReservationInfoDao;
 import kr.or.connect.reservation.dao.reservationinfo.ReservationInfoPriceDao;
 import kr.or.connect.reservation.dto.reservationinfo.ReservationInfoAddDto;
@@ -74,5 +75,13 @@ public class ReservationInfoServiceImpl implements ReservationInfoService{
         .setProductDescription(it.getProductDescription())
         .setSumPrice(it.getSumPrice())
         ).collect(Collectors.toList());
+  }
+  
+  @Override
+  @Transactional
+  public boolean removeByReservatoinInfoId(long reservationInfoId) {
+    reservationInfoPriceDao.deleteByReservationInfoId(reservationInfoId);
+    long result = reservationInfoDao.deleteById(reservationInfoId);
+    return result > 0;
   }
 }

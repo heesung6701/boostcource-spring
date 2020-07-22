@@ -79,4 +79,14 @@ public class ReservaionInfoServiceTest {
     List<ReservationInfoDto> list = reservationInfoService.getListByUserId(1);
     Assert.assertEquals(2, list.size());
   }
+
+  @Test
+  public void removeByReservatoinInfoIdTest() {
+    when(reservationInfoPriceDao.deleteByReservationInfoId(anyLong())).thenReturn(1L);
+    when(reservationInfoDao.deleteById(anyLong())).thenReturn(1L);
+
+    long reservationInfoId = 99;
+    boolean isSuccess = reservationInfoService.removeByReservatoinInfoId(reservationInfoId);
+    Assert.assertEquals(true, isSuccess);
+  }
 }
