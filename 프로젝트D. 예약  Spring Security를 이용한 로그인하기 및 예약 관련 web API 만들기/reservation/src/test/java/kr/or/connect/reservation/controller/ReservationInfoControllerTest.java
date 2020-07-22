@@ -2,8 +2,11 @@ package kr.or.connect.reservation.controller;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,6 +17,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.bind.annotation.RequestBody;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.security.auth.UserPrincipal;
 import junit.framework.Assert;
@@ -61,6 +65,19 @@ public class ReservationInfoControllerTest {
   @Test
   public void getByUsrIdTest() throws Exception {
     mockMvc.perform(get("/api/reservationInfos")
+        .principal(new UserPrincipal("heesung6701@naver.com")))
+        .andExpect(status().isOk());
+  }
+
+  @Test
+  public void removeByReservationnInfoId() throws Exception {
+    HashMap<String, String> map = new HashMap<>();
+    map.put("id",  "16");
+    String content = objectMapper.writeValueAsString(map);
+    mockMvc.perform(put("/api/reservationInfos")
+        .contentType(MediaType.APPLICATION_JSON)
+        .accept(MediaType.APPLICATION_JSON)
+        .content(content)
         .principal(new UserPrincipal("heesung6701@naver.com")))
         .andExpect(status().isOk());
   }
