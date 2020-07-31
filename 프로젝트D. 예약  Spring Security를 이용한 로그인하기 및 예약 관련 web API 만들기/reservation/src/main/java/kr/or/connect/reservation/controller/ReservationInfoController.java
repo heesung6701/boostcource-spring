@@ -41,9 +41,7 @@ public class ReservationInfoController {
   @ResponseBody
   public ReservationInfoResult getByUserId(Principal principal) {
     String userEmail = principal.getName();
-    User user = userService.getUserByEmail(userEmail);
-    long userId = user.getId();
-    List<ReservationInfoDto> reservationInfos = reservationInfoService.getListByUserId(userId);
+    List<ReservationInfoDto> reservationInfos = reservationInfoService.getListByUserEmail(userEmail);
     return new ReservationInfoResult()
         .setSize(reservationInfos.size())
         .setItems(reservationInfos);
