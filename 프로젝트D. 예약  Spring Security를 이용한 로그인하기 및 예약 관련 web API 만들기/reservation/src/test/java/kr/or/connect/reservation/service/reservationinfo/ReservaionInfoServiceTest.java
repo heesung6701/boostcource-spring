@@ -3,6 +3,7 @@ package kr.or.connect.reservation.service.reservationinfo;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.anyLong;
+import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.when;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -80,6 +81,13 @@ public class ReservaionInfoServiceTest {
     Assert.assertEquals(2, list.size());
   }
 
+  @Test
+  public void getListByUserEmail() throws Exception {
+    when(reservationInfoDao.selectByUserEmail(anyString())).thenReturn(Arrays.asList(new ReservationInfoEntity(), new ReservationInfoEntity()));
+    List<ReservationInfoDto> list = reservationInfoService.getListByUserEmail("carami@connect.co.kr");
+    Assert.assertEquals(2, list.size());
+  }
+  
   @Test
   public void removeByReservatoinInfoIdTest() {
     when(reservationInfoPriceDao.deleteByReservationInfoId(anyLong())).thenReturn(1L);

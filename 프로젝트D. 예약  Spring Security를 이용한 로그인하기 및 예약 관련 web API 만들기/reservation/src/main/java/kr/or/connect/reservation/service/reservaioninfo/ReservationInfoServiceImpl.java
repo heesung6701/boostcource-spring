@@ -78,10 +78,28 @@ public class ReservationInfoServiceImpl implements ReservationInfoService{
   }
   
   @Override
+  public List<ReservationInfoDto> getListByUserEmail(String userEmail) {
+    return reservationInfoDao.selectByUserEmail(userEmail).stream().map(it -> new ReservationInfoDto()
+        .setId(it.getId())
+        .setDisplayInfoId(it.getDisplayInfoId())
+        .setUserId(it.getUserId())
+        .setReservationDate(it.getReservationDate())
+        .setCancelFlag(it.getCancelFlag())
+        .setCancelFlag(it.getCancelFlag())
+        .setCreateDate(it.getCreateDate())
+        .setModifyDate(it.getModifyDate())
+        .setProductContent(it.getProductContent())
+        .setProductDescription(it.getProductDescription())
+        .setSumPrice(it.getSumPrice())
+        ).collect(Collectors.toList());
+  }
+  
+  @Override
   @Transactional
   public boolean removeByReservatoinInfoId(long reservationInfoId) {
     reservationInfoPriceDao.deleteByReservationInfoId(reservationInfoId);
     long result = reservationInfoDao.deleteById(reservationInfoId);
     return result > 0;
   }
+  
 }

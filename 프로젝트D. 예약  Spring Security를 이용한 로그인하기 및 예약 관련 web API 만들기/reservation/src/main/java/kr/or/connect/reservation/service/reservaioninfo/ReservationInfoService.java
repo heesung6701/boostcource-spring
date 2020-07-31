@@ -9,5 +9,6 @@ import kr.or.connect.reservation.entity.reservationinfo.ReservationInfoEntity;
 public interface ReservationInfoService {
   ReservationInfoAddResult addReservationInfo(ReservationInfoAddDto reservationInfoDto);
   List<ReservationInfoDto> getListByUserId(long userId);
+  List<ReservationInfoDto> getListByUserEmail(String userEmail);
   boolean removeByReservatoinInfoId(long reservationInfoId);
 }
