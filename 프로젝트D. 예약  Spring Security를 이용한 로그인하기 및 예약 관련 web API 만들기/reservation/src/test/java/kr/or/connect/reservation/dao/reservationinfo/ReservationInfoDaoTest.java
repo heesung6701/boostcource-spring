@@ -61,6 +61,13 @@ public class ReservationInfoDaoTest {
     Assert.assertEquals(1, result.size());
     Assert.assertEquals(13000, result.get(0).getSumPrice());
   }
+
+  @Test
+  public void selectByUserEmailTest() throws Exception {
+    List<ReservationInfoEntity> result = reservationInfoDao.selectByUserEmail("dominsang@connect.co.kr");
+    Assert.assertEquals(1, result.size());
+    Assert.assertEquals(13000, result.get(0).getSumPrice());
+  }
   
   @Test
   public void deleteByReservationInfoIdTest() throws Exception {
