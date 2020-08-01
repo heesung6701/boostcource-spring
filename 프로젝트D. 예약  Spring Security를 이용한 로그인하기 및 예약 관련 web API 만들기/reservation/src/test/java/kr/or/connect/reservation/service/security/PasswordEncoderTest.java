@@ -1,5 +1,6 @@
 package kr.or.connect.reservation.service.security;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +17,10 @@ public class PasswordEncoderTest {
   PasswordEncoder passwordEncoder;
 
   @Test
-  public void passwordEncode() throws Exception {
-    System.out.println(passwordEncoder.encode("1234"));
+  public void passwordEncodeTest() throws Exception {
+    String result = passwordEncoder.encode("1234");
+    System.out.println(result);
+    Assert.assertTrue(result.matches("1234"));
   }
 
   @Test
@@ -25,7 +28,7 @@ public class PasswordEncoderTest {
     String encodedPasswd = "$2a$10$USbExG2YOZJqu5rR9eWAqO3NqwjS6c8uI0c695cnURA2gxqRnx41O";
     String password = "1234";
     boolean test = passwordEncoder.matches(password, encodedPasswd);
-    System.out.println(test);
+    Assert.assertTrue(test);
   }
 
 }
